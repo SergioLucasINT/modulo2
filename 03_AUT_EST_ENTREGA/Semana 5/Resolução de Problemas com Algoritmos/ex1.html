@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Exercício 1 - Semana 05</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergio Brito Amorim Lucas">
+    <meta name="description" content="Exercício 1 da lista de exercícios obrigatórios da semana 05, feitos como parte da graduação bacharelado em Ciências da Computação no Instituto de Tecnologia e Liderança - Inteli.">
+    <meta name="tags" content="Inteli, Exercícios, Lista, Bacharelado">
+    <script defer> 
+        function calc(val) {
+            let n1 = document.querySelector('#n1').value;
+            let n2 = document.querySelector('#n2').value; 
+            let ans = document.querySelector('#ans');
+            document.querySelector('.ans').style.display = "block";
+            let operation = String(val); 
+
+            if (operation.includes('+')) {
+                let result = parseFloat(n1) + parseFloat(n2); 
+                ans.innerHTML = String(result); 
+            } else if (operation.includes('-')) {
+                let result = parseFloat(n1) - parseFloat(n2); 
+                ans.innerHTML = String(result);             
+            } else if (operation.includes('/')) {
+                let result = parseFloat(n1) / parseFloat(n2); 
+                ans.innerHTML = String(result); 
+            } else if (operation.includes('*')) {
+                let result = parseFloat(n1) * parseFloat(n2); 
+                ans.innerHTML = String(result); 
+            } else {
+                let result = parseFloat(n1) % parseFloat(n2); 
+                ans.innerHTML = String(result); 
+            }          
+        }
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1>Insira Seus Números</h1>
+        <p>Insira aqui os números desejados, e realize uma das operações listadas abaixo.</p>
+    </div>
+    <div class="inputs">
+        <input type="number" name ="n1" id = "n1" placeholder="Número 1"/>
+        <input type="number" name="n2" id="n2" placeholder="Número 2">
+    </div>
+    <div class="btns" style="margin: 10px;">
+        <input type="button" value="+ (Soma)" onclick="calc(this.value)">
+        <input type="button" value="- (Subtração)" onclick="calc(this.value)">
+        <input type="button" value="/ (Divisão)" onclick="calc(this.value)">
+        <input type="button" value="* (Multiplicação)" onclick="calc(this.value)">
+        <input type="button" value="% (Resto de Divisão)" onclick="calc(this.value)">
+    </div>
+    <div class="ans" style="display: none;">
+        <h3>A resposta de sua operação é</h3>
+        <p id="ans"></p>
+    </div>
+</body>

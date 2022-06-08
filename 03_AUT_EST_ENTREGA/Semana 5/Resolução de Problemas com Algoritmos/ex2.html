@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Exercício 2 - Semana 05</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergio Brito Amorim Lucas">
+    <meta name="description" content="Exercício 2 da lista de exercícios obrigatórios da semana 05, feitos como parte da graduação bacharelado em Ciências da Computação no Instituto de Tecnologia e Liderança - Inteli.">
+    <meta name="tags" content="Inteli, Exercícios, Lista, Bacharelado">
+    <script defer>
+        function pay() {
+            let input = document.querySelector('#price').value; 
+            let ans = document.querySelector('#ans');
+            document.querySelector('.ans').style.display = "block";
+
+            let nota100 = parseInt(input/100); 
+            let nota50 = parseInt((input % 100) / 50); 
+            let nota20 = parseInt(((input % 100) % 50) / 20);
+            let nota10 = parseInt((((input % 100) % 50) % 20) / 10);
+            let nota5 = parseInt(((((input % 100) % 50) % 20) % 10) / 5);
+            let nota2 = parseInt((((((input % 100) % 50) % 20) % 10) % 5) / 2);
+            let nota1 = parseInt(((((((input % 100) % 50) % 20) % 10) % 5) %2) / 1);
+            
+            ans.innerHTML = String('Você precisará de ' + nota100 + ' notas de 100 reais, ' + nota50 + ' notas de 50 reais, ' + nota20 + ' notas de 20 reais, ' + nota10 + ' notas de 10 reais, ' + nota5 + ' notas de 5 reais, ' + nota2 + ' notas de 2 reais, e ' + nota1 + ' moeda de 1 real.')
+
+        }
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1>Insira o Preço de Seu Produto.</h1>
+        <p>Insira um valor, e saiba como realizar o pagamento com a menor quantidade de notas possíveis.</p>
+    </div>
+    <input type="number" name ="price" id = "price" min="0" placeholder="Insira aqui o preço..." />
+    <input type="button" value="Pagar" onclick="pay()">
+    <div class="ans" style="display: none;">
+        <h3>O pagamento com a menor quantidade de notas possíveis é</h3>
+        <p id="ans"></p>
+    </div>
+</body>

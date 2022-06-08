@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Exercício 3 - Semana 05</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergio Brito Amorim Lucas">
+    <meta name="description" content="Exercício 2 da lista de exercícios obrigatórios da semana 05, feitos como parte da graduação bacharelado em Ciências da Computação no Instituto de Tecnologia e Liderança - Inteli.">
+    <meta name="tags" content="Inteli, Exercícios, Lista, Bacharelado">
+    <script defer>
+        function calc() {
+            let numbers = document.querySelector('#string').value; 
+            let key = document.querySelector('#key').value;
+            let ans = document.querySelector('#ans');
+            let ans2 = document.querySelector('#ans2');
+            
+            let numberArray = numbers.split('');
+
+            ans.innerHTML = String(numberArray.sort());        
+            
+            let keypos = (numberArray.sort()).indexOf(key);
+
+            if (keypos >= 0) {
+                ans2.innerHTML = String('A sua chave está na ' + (keypos + 1) + ' posição.');
+                console.log(keypos)
+            } else {
+                ans2.innerHTML = String('Sua chave não existe no Array.'); 
+                console.log(keypos)
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1>Insira sua string e um valor foco</h1>
+        <p>Insira uma string, e qual valor dela é o foco.</p>
+    </div>
+    <input type="number" name ="string" id = "string" placeholder="Insira aqui os números..."/>
+    <input type="number" name ="key" id = "key" placeholder="Insira aqui o valor foco." min="0" max="9"/>
+    <input type="button" value="Calcular" onclick="calc()">
+    <div class="ans">
+        <h3>A string em ordem crescente é:</h3>
+        <p id="ans"></p>
+        <p id="ans2"></p>
+    </div>
+</body>
