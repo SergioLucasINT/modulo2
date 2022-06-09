@@ -1,0 +1,33 @@
+<html lang="pt-br">
+<head>
+    <title>Exercício 2 - Semana 07</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergio Brito Amorim Lucas">
+    <meta name="description" content="Exercício 2 da lista de exercícios obrigatórios da semana 07, feitos como parte da graduação bacharelado em Ciências da Computação no Instituto de Tecnologia e Liderança - Inteli.">
+    <meta name="tags" content="Inteli, Exercícios, Lista, Bacharelado">
+    <script defer>
+        function troca() {
+            let str1 = document.querySelector("#str1").value; 
+            let str2 = document.querySelector("#str2").value;
+                
+            document.querySelector("#str1").value = str2; 
+            document.querySelector("#str2").value = str1; 
+
+        }
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1>Troca de Strings</h1>
+        <p>Insira aqui duas strings que podem ser alternadas uma entre a outra.</p>
+    </div>
+    <div class="inputs">
+        <input type="text" name ="str1" id = "str1" placeholder="String 1" />
+        <input type="text" name ="str2" id = "str2" placeholder="String 2" />
+    </div>
+    <div class="btns" style="margin: 10px;">
+        <input type="button" value="Troca!" onclick="troca()">
+    </div>
+</body>

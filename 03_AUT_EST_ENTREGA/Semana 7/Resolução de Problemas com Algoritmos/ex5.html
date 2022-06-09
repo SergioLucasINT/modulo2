@@ -1,0 +1,171 @@
+<html lang="pt-br">
+<head>
+    <title>Exercício 5 - Semana 07</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergio Brito Amorim Lucas">
+    <meta name="description" content="Exercício 2 da lista de exercícios obrigatórios da semana 07, feitos como parte da graduação bacharelado em Ciências da Computação no Instituto de Tecnologia e Liderança - Inteli.">
+    <meta name="tags" content="Inteli, Exercícios, Lista, Bacharelado">
+    <script defer>
+
+        let alumni
+
+        function insert() {
+            let alum = parseInt(document.querySelector("#alum").value);
+            let grades = document.querySelector(".grades");
+
+
+            for (let i = 1; i <= alum; i++) {
+                let info = `
+                <tr>
+                <td>
+                    <input type="text" name="alum${i}" id = "alum${i}" placeholder="Aluno ${i}">
+                </td>
+                <td>
+                    <input type="number" name="test${i}" id = "test${i}" placeholder= "0 - 10" min="0" oninput="this.value = !! this.value && Math.abs(this.value) <= 10 ? Math.abs(this.value) : null" max="10">
+                </td>
+                <td>
+                    <input type="number" name="work${i}" id = "work${i}" placeholder="0 - 10" min="0" oninput="this.value = !! this.value && Math.abs(this.value) <= 10 ? Math.abs(this.value) : null" max="10">
+                </td>
+                <td>
+                    <input type="number" name="avrg${i}" id = "avrg${i}" placeholder="Média do Aluno ${i}" disabled>
+                </td>
+                </tr>
+                `
+                grades.innerHTML += info;
+            }
+
+            grades.innerHTML += `
+            <tr>
+                <td>
+                    <input type="button" value="Calcular as notas!" onclick="calc()">
+                </td>
+            </tr>
+            `
+
+            alumni = alum; 
+
+        }
+
+        function calc() {
+
+            let results = document.querySelector(".results");
+
+            let gradeArray = []; 
+            let workArray = [];
+            let avrgArray = []; 
+
+            for (let i = 1; i <= alumni; i++) {
+
+                let testGrade = document.querySelector(`#test${i}`).value; 
+                let workGrade = document.querySelector(`#work${i}`).value; 
+
+                gradeArray.push(testGrade); 
+                workArray.push(workGrade); 
+
+                let avrg = (workGrade * 0.4) + (testGrade * 0.6); 
+
+                document.querySelector(`#avrg${i}`).value = avrg; 
+
+                avrgArray.push(avrg); 
+
+            }
+
+            let addGrade = gradeArray.reduce(add); 
+            let addWork = workArray.reduce(add); 
+            let addAvrg = avrgArray.reduce(add); 
+
+            function add(accumulator, a) {
+                return parseFloat(accumulator) + parseFloat(a);
+            }
+
+            let globalAvrg = parseFloat(addAvrg) / parseFloat(alumni);
+            let globalGrade = parseFloat(addGrade) / parseFloat(alumni);
+            let globalWork = parseFloat(addWork) / parseFloat(alumni);
+
+            let gradeSort = gradeArray.slice().sort(function(a, b){return a-b});
+            let highGrade = gradeSort[(alumni - 1)];
+            let lowGrade = gradeSort[0]; 
+
+            let workSort = workArray.sort(function(a, b){return a-b}); 
+            let highWork = gradeSort[(alumni - 1)];
+            let lowWork = gradeSort[0];
+
+            let hgIndex = parseInt(gradeArray.indexOf(highGrade));
+            let hwIndex = parseInt(workArray.indexOf(highWork)); 
+
+            let lgIndex = parseInt(gradeArray.indexOf(lowGrade));
+            let lwIndex = parseInt(workArray.indexOf(lowGrade));  
+
+            let hgAlum = document.querySelector(`#alum${(hgIndex + 1)}`).value;
+            let hwAlum = document.querySelector(`#alum${(hwIndex + 1)}`).value;
+
+            let lgAlum = document.querySelector(`#alum${(lgIndex + 1)}`).value; 
+            let lwAlum = document.querySelector(`#alum${(lwIndex + 1)}`).value;
+
+            results.innerHTML = `
+            <tr>
+                <th>Média Geral</th>
+                <th>Média Aritmética das Notas</th>
+                <th>Média Aritmética dos Trabalhos</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" value = "${globalAvrg}" disabled/>
+                </td>
+                <td>
+                    <input type="number" value = "${globalGrade}" disabled/>
+                </td> 
+                <td>
+                    <input type="number" value = "${globalWork}" disabled/>
+                </td> 
+            </tr>
+            <tr>
+                <th>Aluno com a maior nota (Prova) </th>
+                <th>Aluno com a menor nota (Prova) </th>
+                <th>Aluno com a maior nota (Trabalho) </th>
+                <th>Aluno com a menor nota (Trabalho) </th>
+            </tr> 
+            <tr>
+                <td>
+                    <input type="number" value = "${hgAlum}" disabled/>
+                </td> 
+                <td>
+                    <input type="number" value = "${lgAlum}" disabled/>
+                </td>
+                <td>
+                    <input type="number" value = "${hwAlum}" disabled/>
+                </td> 
+                <td>
+                    <input type="number" value = "${lwAlum}" disabled/>
+                </td>
+            </tr>
+            `
+        }
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1>Notas de Alunos</h1>
+        <p>Insira aqui quantos alunos tem, e quais as suas notas.</p>
+    </div>
+    <div class="inputs">
+        <input type="number" name ="alum" id = "alum" placeholder="Quantos alunos você tem?" />
+    </div>
+    <div class="btns" style="margin: 10px;">
+        <input type="button" value="Inserir notas" onclick="insert()">
+    </div>
+    <div>
+        <table class="grades">
+            <tr>
+                <th>Nome</th>
+                <th>Nota da Prova</th>
+                <th>Nota do Trabalho</th>
+                <th>Média</th>
+            </tr>
+        </table>
+        <table class="results">
+        </table>
+    </div>
+</body>

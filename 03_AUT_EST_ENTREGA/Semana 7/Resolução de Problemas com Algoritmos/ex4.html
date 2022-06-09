@@ -1,0 +1,51 @@
+<html lang="pt-br">
+<head>
+    <title>Exercício 4 - Semana 07</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergio Brito Amorim Lucas">
+    <meta name="description" content="Exercício 2 da lista de exercícios obrigatórios da semana 07, feitos como parte da graduação bacharelado em Ciências da Computação no Instituto de Tecnologia e Liderança - Inteli.">
+    <meta name="tags" content="Inteli, Exercícios, Lista, Bacharelado">
+    <script defer>
+        function calc() {
+
+            let time = document.querySelector("#time").selectedIndex; 
+            let ppl = document.querySelector("#ppl").value; 
+            let ans = document.querySelector("#ans");
+
+            if (time == 0) {
+                if (ppl <= 50) {
+                    ans.innerHTML = String("O preço da sua viagem é de R$" + (ppl * 200));
+                } else {
+                    ans.innerHTML = String("O preço da sua viagem é de R$" + (ppl * (200 - (200 * 0.4) ) ) ); 
+                }
+            } else {
+                if (ppl <= 50) {
+                    ans.innerHTML = String("O preço da sua viagem é de R$" + (ppl * 100)); 
+                } else {
+                    ans.innerHTML = String("O preço da sua viagem é de R$" + (ppl * (100 - (100 * 0.2) ) ) );
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1>Preço de Vôo</h1>
+        <p>Insira quantas pessoas irão abordo, e o turno da viagem. Caso insira mais de 50 pessoas, ganhará desconto!</p>
+    </div>
+    <div class="inputs">
+        <input type="number" name ="ppl" id = "ppl" placeholder="Quantas pessoas" value="" />
+        <select name="time" id="time" placeholder="Selecione o turno">
+            <option value="diu">Diurno</option>
+            <option value="noc">Noturno</option>
+        </select>
+    </div>
+    <div class="btns" style="margin: 10px;">
+        <input type="button" value="Veja o Preço!" onclick="calc()">
+    </div>
+    <div class="answer">
+        <p id="ans"></p> 
+     </div>
+</body>

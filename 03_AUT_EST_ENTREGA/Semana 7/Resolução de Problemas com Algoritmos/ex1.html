@@ -1,0 +1,37 @@
+<html lang="pt-br">
+<head>
+    <title>Exercício 1 - Semana 07</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergio Brito Amorim Lucas">
+    <meta name="description" content="Exercício 1 da lista de exercícios obrigatórios da semana 07, feitos como parte da graduação bacharelado em Ciências da Computação no Instituto de Tecnologia e Liderança - Inteli.">
+    <meta name="tags" content="Inteli, Exercícios, Lista, Bacharelado">
+    <script defer>
+        function qty(op) {
+
+            let qty = parseInt(document.querySelector('#qt').value); 
+            let oper = String(op); 
+
+            if (oper.includes('+')) {
+                document.querySelector('#qt').value = (qty + 1); 
+            } else {
+               document.querySelector('#qt').value = (qty - 1);
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1>Quantidade de Produtos</h1>
+        <p>Insira aqui a quantidade desejada de cada produto.</p>
+    </div>
+    <div class="inputs">
+        <input type="number" name ="qt" id = "qt" placeholder="Quantas Unidades Deseja?" value="0"/>
+    </div>
+    <div class="btns" style="margin: 10px;">
+        <input type="button" value="+ (Mais 1)" onclick="qty(this.value)">
+        <input type="button" value="- (Menos 1)" onclick="qty(this.value)">
+    </div>
+</body>

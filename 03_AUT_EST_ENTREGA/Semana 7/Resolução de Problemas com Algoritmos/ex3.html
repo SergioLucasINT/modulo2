@@ -1,0 +1,50 @@
+<html lang="pt-br">
+<head>
+    <title>Exercício 3 - Semana 07</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergio Brito Amorim Lucas">
+    <meta name="description" content="Exercício 2 da lista de exercícios obrigatórios da semana 07, feitos como parte da graduação bacharelado em Ciências da Computação no Instituto de Tecnologia e Liderança - Inteli.">
+    <meta name="tags" content="Inteli, Exercícios, Lista, Bacharelado">
+    <script defer>
+        function verify() {
+            let input = document.querySelector("#cel").value;
+            let template = "(XX)XXXXX-XXXX";
+
+            let hammingDistance = (input = '', template = '') => {
+                if (input.length !== template.length) {
+                    return 0;
+                }
+
+                let dist = 0;
+
+                for (let i = 0; i < input.length; i += 1) {
+                    if (input[i] !== template[i]) {
+                        dist += 1;
+                    };
+                };
+
+                return dist;
+            };
+            
+            if ((hammingDistance(input, template) == 11)) {
+                alert("Numero Válido!");
+            } else {
+                alert("Número Inválido! Utilize o modelo (XX)XXXXX-XXXX");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1>Verificador de Número</h1>
+        <p>Insira aqui seu número de celular e diremos se ele é valido.</p>
+    </div>
+    <div class="inputs">
+        <input type="text" name ="cel" id = "cel" placeholder="Número de celular aqui (Siga este template: (XX) XXXXX-XXXX)" />
+    </div>
+    <div class="btns" style="margin: 10px;">
+        <input type="button" value="Verificar" onclick="verify()">
+    </div>
+</body>
